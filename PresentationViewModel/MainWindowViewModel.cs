@@ -8,6 +8,7 @@
 //__________________________________________________________________________________________
 
 using System;
+using System.Windows.Input;
 using System.Collections.ObjectModel;
 using TP.ConcurrentProgramming.Presentation.Model;
 using TP.ConcurrentProgramming.Presentation.ViewModel.MVVMLight;
@@ -32,6 +33,7 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel
 
     #region public API
 
+    public int BallCount { get; set; }
     public void Start(int numberOfBalls)
     {
       if (Disposed)
@@ -79,6 +81,19 @@ namespace TP.ConcurrentProgramming.Presentation.ViewModel
     private ModelAbstractApi ModelLayer;
     private bool Disposed = false;
 
+    private RelayCommand start_Click;
+    public ICommand Start_Click => start_Click ??= new RelayCommand(PerformStart_Click);
+    private RelayCommand stop_Click; 
+    public ICommand Stop_Click => stop_Click ??= new RelayCommand(PerformStop_Click); 
+    private void PerformStart_Click()
+    {
+      ModelLayer.Start(BallCount);
+    }
+
+    private void PerformStop_Click() 
+    {
+    Balls.Clear();
+    }
     #endregion private
-  }
+    }
 }
