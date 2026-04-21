@@ -39,11 +39,21 @@ namespace TP.ConcurrentProgramming.Data
       NewPositionNotification?.Invoke(this, Position);
     }
 
-    internal void Move(Vector delta)
-    {
-      Position = new Vector(Position.x + delta.x, Position.y + delta.y);
-      RaiseNewPositionChangeNotification();
-    }
+        internal void Move(float diameter, float boardWidth, float boardHeight, float borderThickness)
+        {
+            Position = new Vector(Position.x + Velocity.x, Position.y + Velocity.y);
+
+            if (Position.x <= 0 || Position.x >= boardWidth - diameter - borderThickness)  //Szerokość stołu = 400 - 20 (Średnica) - 8 (Granica)
+            {
+                Velocity = new Vector(-Velocity.x, Velocity.y);
+            }
+
+            if (Position.y <= 0 || Position.y >= boardHeight - diameter - borderThickness) //Wysokość stołu = 420 - 20 (Średnica) - 8 (Granica)
+            {
+                Velocity = new Vector(Velocity.x, -Velocity.y);
+            }
+            RaiseNewPositionChangeNotification();
+        }
 
     #endregion private
   }
