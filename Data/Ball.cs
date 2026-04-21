@@ -41,20 +41,36 @@ namespace TP.ConcurrentProgramming.Data
 
         internal void Move(float diameter, float boardWidth, float boardHeight, float borderThickness)
         {
+    
             Position = new Vector(Position.x + Velocity.x, Position.y + Velocity.y);
 
-            if (Position.x <= 0 || Position.x >= boardWidth - diameter - borderThickness)  //Szerokość stołu = 400 - 20 (Średnica) - 8 (Granica)
+            float maxX = boardWidth - diameter - borderThickness;
+            float maxY = boardHeight - diameter - borderThickness;
+
+            if (Position.x <= 0)
             {
+                Position = new Vector(0, Position.y);
+                Velocity = new Vector(-Velocity.x, Velocity.y);
+            }
+            else if (Position.x >= maxX)
+            {
+                Position = new Vector(maxX, Position.y);
                 Velocity = new Vector(-Velocity.x, Velocity.y);
             }
 
-            if (Position.y <= 0 || Position.y >= boardHeight - diameter - borderThickness) //Wysokość stołu = 420 - 20 (Średnica) - 8 (Granica)
+            if (Position.y <= 0)
             {
+                Position = new Vector(Position.x, 0);
+                Velocity = new Vector(Velocity.x, -Velocity.y);
+            }
+            else if (Position.y >= maxY)
+            {
+                Position = new Vector(Position.x, maxY);
                 Velocity = new Vector(Velocity.x, -Velocity.y);
             }
             RaiseNewPositionChangeNotification();
         }
 
-    #endregion private
-  }
+        #endregion private
+    }
 }
