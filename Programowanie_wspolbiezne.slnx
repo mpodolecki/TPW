@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/GraphicalUserInterface/">
+    <Project Path="GraphicalUserInterface/PresentationView.csproj" />
+  </Folder>
+  <Project Path="BusinessLogic/BusinessLogic.csproj" />
+  <Project Path="BusinessLogicTest/BusinessLogicTest.csproj" />
+  <Project Path="Data/Data.csproj" />
+  <Project Path="DataTest/DataTest.csproj" />
+  <Project Path="PresentationModel/PresentationModel.csproj" />
+  <Project Path="PresentationModelTest/PresentationModelTest.csproj" />
+  <Project Path="PresentationViewModel/PresentationViewModel.csproj" />
+  <Project Path="PresentationViewModelTest/PresentationViewModelTest.csproj" />
+</Solution>
